@@ -223,18 +223,7 @@ body {
   transition: transform 0.25s ease;
 }
 
-/* Mobile Menu */
-#mobile-menu {
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-}
-
-#mobile-menu.open {
-  max-height: 500px;
-  opacity: 1;
-}
+/* Mobile Menu - Note: visibility is controlled via Tailwind classes in React components */
 
 /* Slide Track for Carousel */
 .slide-track {

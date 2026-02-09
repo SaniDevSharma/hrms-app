@@ -7,13 +7,29 @@ import PendingRequests from '../components/dashboard/PendingRequests';
 
 export default function Dashboard() {
     const [currentTime, setCurrentTime] = useState(new Date());
+    const [greeting, setGreeting] = useState('Good Morning');
 
     useEffect(() => {
         const timer = setInterval(() => setCurrentTime(new Date()), 60000);
         return () => clearInterval(timer);
     }, []);
 
+    useEffect(() => {
+        const hour = new Date().getHours();
+        if (hour < 12) setGreeting('Good Morning');
+        else if (hour < 18) setGreeting('Good Afternoon');
+        else setGreeting('Good Evening');
+    }, []);
+
     const formatDate = (date: Date) => {
+        return date.toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        });
+    };
+
+    const formatDateLong = (date: Date) => {
         return date.toLocaleDateString('en-US', {
             weekday: 'long',
             year: 'numeric',
@@ -38,33 +54,39 @@ export default function Dashboard() {
     ];
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-4 sm:space-y-6 lg:space-y-8">
             {/* Welcome Banner */}
             <GlassCard className="overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                        <h1 className="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-white">
-                            Good Morning, <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">John!</span>
-                        </h1>
-                        <p className="text-slate-500 dark:text-slate-400 mt-2">
-                            Here's what's happening with your team today.
-                        </p>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <div className="text-right">
-                            <p className="text-sm font-semibold text-slate-800 dark:text-white">{formatDate(currentTime)}</p>
-                            <p className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">{formatTime(currentTime)}</p>
+                <div className="absolute top-0 right-0 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                <div className="relative z-10 flex flex-col gap-4">
+                    {/* Top Row - Greeting and Time */}
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+                        <div>
+                            <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-800 dark:text-white">
+                                {greeting}, <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">John!</span>
+                            </h1>
+                            <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 mt-1 sm:mt-2">
+                                Here's what's happening with your team today.
+                            </p>
                         </div>
-                        <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/30">
-                            <i className="fa-solid fa-calendar-days text-xl"></i>
+                        <div className="flex items-center gap-3 sm:gap-4">
+                            <div className="text-left sm:text-right">
+                                <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-white">
+                                    <span className="hidden sm:inline">{formatDateLong(currentTime)}</span>
+                                    <span className="sm:hidden">{formatDate(currentTime)}</span>
+                                </p>
+                                <p className="text-lg sm:text-2xl font-bold text-cyan-600 dark:text-cyan-400">{formatTime(currentTime)}</p>
+                            </div>
+                            <div className="h-10 w-10 sm:h-12 lg:h-14 sm:w-12 lg:w-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/30">
+                                <i className="fa-solid fa-calendar-days text-base sm:text-lg lg:text-xl"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </GlassCard>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
                 {stats.map((stat, index) => (
                     <StatCard key={stat.title} {...stat} stagger={index + 1} />
                 ))}
@@ -74,7 +96,7 @@ export default function Dashboard() {
             <Charts />
 
             {/* Live Feed & Requests */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                 <div className="lg:col-span-2 xl:col-span-3">
                     <LiveFeed />
                 </div>

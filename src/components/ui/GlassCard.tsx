@@ -10,7 +10,7 @@ interface GlassCardProps {
 export default function GlassCard({ children, className = '', animate = true, stagger }: GlassCardProps) {
     return (
         <div
-            className={`glass-card rounded-3xl p-6 ${animate ? 'animate-slide-up' : ''} ${stagger ? `stagger-${stagger}` : ''} ${className}`}
+            className={`glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-5 lg:p-6 ${animate ? 'animate-slide-up' : ''} ${stagger ? `stagger-${stagger}` : ''} ${className}`}
         >
             {children}
         </div>

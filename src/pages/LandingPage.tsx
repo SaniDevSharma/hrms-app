@@ -280,25 +280,25 @@ function ProductCardComponent({ product, index }: { product: ProductCard; index:
     }, [product.images.length, index]);
 
     return (
-        <div className={`card-hover glass-card rounded-3xl flex flex-col overflow-hidden animate-slide-up stagger-${index + 1} group relative`}>
+        <div className={`card-hover glass-card rounded-2xl sm:rounded-3xl flex flex-col overflow-hidden animate-slide-up stagger-${index + 1} group relative`}>
             <div className="card-gradient absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none"></div>
 
             {/* Header */}
-            <div className="px-6 py-5 flex items-center justify-between border-b border-slate-100 dark:border-slate-700/50 relative">
-                <div className="flex items-center gap-4">
-                    <div className={`card-icon h-12 w-12 bg-gradient-to-br ${product.color} rounded-2xl text-white flex items-center justify-center shadow-lg ${product.shadowColor} transition-transform duration-300`}>
-                        <i className={`${product.icon} text-xl`}></i>
+            <div className="px-4 sm:px-6 py-3 sm:py-5 flex items-center justify-between border-b border-slate-100 dark:border-slate-700/50 relative">
+                <div className="flex items-center gap-3 sm:gap-4">
+                    <div className={`card-icon h-10 w-10 sm:h-12 sm:w-12 bg-gradient-to-br ${product.color} rounded-xl sm:rounded-2xl text-white flex items-center justify-center shadow-lg ${product.shadowColor} transition-transform duration-300`}>
+                        <i className={`${product.icon} text-base sm:text-xl`}></i>
                     </div>
                     <div>
-                        <h3 className="font-bold text-slate-900 dark:text-white text-lg">{product.name}</h3>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">{product.subtitle}</p>
+                        <h3 className="font-bold text-slate-900 dark:text-white text-base sm:text-lg">{product.name}</h3>
+                        <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400">{product.subtitle}</p>
                     </div>
                 </div>
-                <span className="px-2.5 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold rounded-full uppercase">Active</span>
+                <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-[9px] sm:text-[10px] font-bold rounded-full uppercase">Active</span>
             </div>
 
             {/* Image Slider */}
-            <div className="relative w-full h-44 bg-slate-100 dark:bg-slate-800 overflow-hidden">
+            <div className="relative w-full h-36 sm:h-44 bg-slate-100 dark:bg-slate-800 overflow-hidden">
                 <div className="slides w-full h-full">
                     {product.images.map((img, i) => (
                         <img
@@ -312,20 +312,27 @@ function ProductCardComponent({ product, index }: { product: ProductCard; index:
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
                 <Link
                     to={product.route}
-                    className="absolute inset-0 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20"
+                    className="absolute inset-0 flex items-end justify-center pb-4 sm:pb-6 opacity-0 group-hover:opacity-100 sm:transition-all sm:duration-300 z-20"
                 >
-                    <span className={`px-8 py-3 bg-gradient-to-r ${product.color} text-white rounded-full text-sm font-bold shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-2 hover:scale-105`}>
+                    <span className={`px-5 sm:px-8 py-2 sm:py-3 bg-gradient-to-r ${product.color} text-white rounded-full text-xs sm:text-sm font-bold shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-2 hover:scale-105 active:scale-95`}>
                         <span>Launch App</span> <i className="fa-solid fa-arrow-right"></i>
                     </span>
+                </Link>
+                {/* Mobile tap indicator */}
+                <Link
+                    to={product.route}
+                    className="sm:hidden absolute bottom-2 right-2 h-8 w-8 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center shadow-lg z-20"
+                >
+                    <i className="fa-solid fa-arrow-right text-xs text-slate-600 dark:text-slate-300"></i>
                 </Link>
             </div>
 
             {/* Features */}
-            <div className="p-6 flex-grow relative">
-                <p className="text-[10px] text-slate-400 dark:text-slate-500 mb-3 font-bold uppercase tracking-widest">Key Features</p>
-                <div className="flex flex-wrap gap-2">
+            <div className="p-4 sm:p-6 flex-grow relative">
+                <p className="text-[9px] sm:text-[10px] text-slate-400 dark:text-slate-500 mb-2 sm:mb-3 font-bold uppercase tracking-widest">Key Features</p>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {product.features.map((feature) => (
-                        <span key={feature.label} className={`feature-card px-3 py-1.5 rounded-lg ${feature.bgClass} ${feature.textClass} text-xs font-semibold border`}>
+                        <span key={feature.label} className={`feature-card px-2 sm:px-3 py-1 sm:py-1.5 rounded-md sm:rounded-lg ${feature.bgClass} ${feature.textClass} text-[10px] sm:text-xs font-semibold border`}>
                             {feature.label}
                         </span>
                     ))}
@@ -337,31 +344,31 @@ function ProductCardComponent({ product, index }: { product: ProductCard; index:
 
 function ProductShowcaseCard({ product }: { product: ProductShowcase }) {
     return (
-        <div className="glass-card rounded-3xl p-8 mb-6 overflow-hidden relative group">
-            <div className={`absolute ${product.reverse ? 'top-0 left-0 -translate-x-1/2' : 'top-0 right-0 translate-x-1/2'} -translate-y-1/2 w-64 h-64 bg-gradient-to-br ${product.color}/10 rounded-full blur-3xl`}></div>
-            <div className={`flex flex-col ${product.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 relative z-10`}>
+        <div className="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 overflow-hidden relative group">
+            <div className={`absolute ${product.reverse ? 'top-0 left-0 -translate-x-1/2' : 'top-0 right-0 translate-x-1/2'} -translate-y-1/2 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-gradient-to-br ${product.color}/10 rounded-full blur-3xl`}></div>
+            <div className={`flex flex-col ${product.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-4 sm:gap-6 lg:gap-8 relative z-10`}>
                 <div className="lg:w-1/3">
-                    <div className="flex items-center gap-4 mb-4">
-                        <div className={`float-animation h-14 w-14 bg-gradient-to-br ${product.color} rounded-2xl text-white flex items-center justify-center shadow-lg ${product.shadowColor}`}>
-                            <i className={`${product.icon} text-2xl`}></i>
+                    <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                        <div className={`float-animation h-11 w-11 sm:h-14 sm:w-14 bg-gradient-to-br ${product.color} rounded-xl sm:rounded-2xl text-white flex items-center justify-center shadow-lg ${product.shadowColor}`}>
+                            <i className={`${product.icon} text-lg sm:text-2xl`}></i>
                         </div>
                         <div>
-                            <h3 className="text-xl font-bold text-slate-900 dark:text-white">{product.name}</h3>
-                            <p className="text-sm text-slate-500 dark:text-slate-400">{product.subtitle}</p>
+                            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-900 dark:text-white">{product.name}</h3>
+                            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">{product.subtitle}</p>
                         </div>
                     </div>
-                    <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">{product.description}</p>
-                    <Link to={product.route} className={`inline-flex items-center gap-2 ${product.textColor} font-bold hover:underline`}>
+                    <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-3 sm:mb-4 leading-relaxed">{product.description}</p>
+                    <Link to={product.route} className={`inline-flex items-center gap-2 ${product.textColor} text-sm sm:text-base font-bold hover:underline active:scale-95 transition-transform`}>
                         Launch App <i className="fa-solid fa-arrow-right"></i>
                     </Link>
                 </div>
                 <div className="lg:w-2/3">
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
                         {product.features.map((feature) => (
-                            <div key={feature.title} className="bg-white/60 dark:bg-slate-800/60 rounded-xl p-4 border border-slate-100 dark:border-slate-700">
-                                <i className={`fa-solid ${feature.icon} ${product.featureColor} text-xl mb-2`}></i>
-                                <h4 className="font-bold text-slate-800 dark:text-white text-sm mb-1">{feature.title}</h4>
-                                <p className="text-xs text-slate-500 dark:text-slate-400">{feature.desc}</p>
+                            <div key={feature.title} className="bg-white/60 dark:bg-slate-800/60 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-slate-100 dark:border-slate-700">
+                                <i className={`fa-solid ${feature.icon} ${product.featureColor} text-base sm:text-lg lg:text-xl mb-1 sm:mb-2`}></i>
+                                <h4 className="font-bold text-slate-800 dark:text-white text-xs sm:text-sm mb-0.5 sm:mb-1">{feature.title}</h4>
+                                <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-2">{feature.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -374,6 +381,7 @@ function ProductShowcaseCard({ product }: { product: ProductShowcase }) {
 export default function LandingPage() {
     const { darkMode, toggleTheme } = useTheme();
     const [greeting, setGreeting] = useState('Welcome');
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const hour = new Date().getHours();
@@ -383,123 +391,156 @@ export default function LandingPage() {
     }, []);
 
     return (
-        <div className="clean-bg text-slate-600 transition-colors duration-500 dark:text-slate-100 min-h-screen flex flex-col">
-            {/* Background Blobs */}
-            <div className="blob bg-cyan-300/40 dark:bg-cyan-600/20 w-[600px] h-[600px] rounded-full top-[-10%] left-[-10%]"></div>
-            <div className="blob bg-violet-300/40 dark:bg-violet-600/20 w-[500px] h-[500px] rounded-full top-[50%] right-[-5%]" style={{ animationDelay: '-3s' }}></div>
-            <div className="blob bg-rose-300/30 dark:bg-rose-600/20 w-[400px] h-[400px] rounded-full bottom-[-5%] left-[30%]" style={{ animationDelay: '-6s' }}></div>
+        <div className="clean-bg text-slate-600 transition-colors duration-500 dark:text-slate-100 min-h-screen min-h-svh flex flex-col">
+            {/* Background Blobs - Smaller on mobile */}
+            <div className="blob bg-cyan-300/40 dark:bg-cyan-600/20 w-[300px] sm:w-[400px] lg:w-[600px] h-[300px] sm:h-[400px] lg:h-[600px] rounded-full top-[-10%] left-[-10%]"></div>
+            <div className="blob bg-violet-300/40 dark:bg-violet-600/20 w-[250px] sm:w-[350px] lg:w-[500px] h-[250px] sm:h-[350px] lg:h-[500px] rounded-full top-[50%] right-[-5%]" style={{ animationDelay: '-3s' }}></div>
+            <div className="blob bg-rose-300/30 dark:bg-rose-600/20 w-[200px] sm:w-[300px] lg:w-[400px] h-[200px] sm:h-[300px] lg:h-[400px] rounded-full bottom-[-5%] left-[30%]" style={{ animationDelay: '-6s' }}></div>
 
             {/* Navbar */}
             <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200/50 dark:bg-slate-900/80 dark:border-slate-800/50 transition-colors">
-                <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between h-16 items-center">
-                        <div className="flex items-center gap-3 group cursor-pointer">
-                            <div className="h-10 w-10 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20 bg-gradient-to-br from-cyan-500 to-blue-600 group-hover:scale-110 transition-transform duration-300">
-                                <i className="fa-solid fa-cubes text-white text-lg"></i>
+                <div className="max-w-[1800px] mx-auto px-3 sm:px-4 lg:px-8">
+                    <div className="flex justify-between h-14 sm:h-16 items-center">
+                        <div className="flex items-center gap-2 sm:gap-3 group cursor-pointer">
+                            <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20 bg-gradient-to-br from-cyan-500 to-blue-600 group-hover:scale-110 transition-transform duration-300">
+                                <i className="fa-solid fa-cubes text-white text-sm sm:text-lg"></i>
                             </div>
                             <div>
-                                <span className="block font-extrabold text-lg tracking-tight text-slate-900 dark:text-white">SAVIOR</span>
-                                <span className="text-[10px] font-bold text-cyan-600 dark:text-cyan-400 tracking-widest uppercase">HRMIS Portal</span>
+                                <span className="block font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">SAVIOR</span>
+                                <span className="text-[9px] sm:text-[10px] font-bold text-cyan-600 dark:text-cyan-400 tracking-widest uppercase">HRMIS Portal</span>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2 sm:gap-4">
+                            {/* Search - Hidden on mobile */}
                             <div className="hidden md:flex relative">
                                 <input
                                     type="text"
                                     placeholder="Search applications..."
-                                    className="w-64 pl-10 pr-4 py-2.5 bg-slate-100/70 dark:bg-slate-800/70 border border-slate-200/50 dark:border-slate-700/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all"
+                                    className="w-48 lg:w-64 pl-10 pr-4 py-2.5 bg-slate-100/70 dark:bg-slate-800/70 border border-slate-200/50 dark:border-slate-700/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all"
                                 />
-                                <i className="fa-solid fa-magnifying-glass text-slate-400 absolute left-3.5 top-3"></i>
+                                <i className="fa-solid fa-magnifying-glass text-slate-400 absolute left-3.5 top-3 text-sm"></i>
                             </div>
 
+                            {/* Theme Toggle */}
                             <button
                                 onClick={toggleTheme}
-                                className="h-11 w-11 flex items-center justify-center rounded-xl bg-white/60 dark:bg-slate-800/60 hover:bg-white dark:hover:bg-slate-700 hover:shadow-lg transition-all border border-white/60 dark:border-slate-700/50 text-slate-500 dark:text-slate-400"
+                                className="h-9 w-9 sm:h-11 sm:w-11 flex items-center justify-center rounded-xl bg-white/60 dark:bg-slate-800/60 hover:bg-white dark:hover:bg-slate-700 hover:shadow-lg transition-all border border-white/60 dark:border-slate-700/50 text-slate-500 dark:text-slate-400 active:scale-95"
                             >
                                 {darkMode ? (
-                                    <i className="fa-solid fa-sun text-lg text-amber-400"></i>
+                                    <i className="fa-solid fa-sun text-base sm:text-lg text-amber-400"></i>
                                 ) : (
-                                    <i className="fa-solid fa-moon text-lg text-slate-500"></i>
+                                    <i className="fa-solid fa-moon text-base sm:text-lg text-slate-500"></i>
                                 )}
                             </button>
 
-                            <button className="relative p-2.5 rounded-xl text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-all hover:scale-110">
-                                <i className="fa-regular fa-bell text-lg"></i>
-                                <span className="absolute top-1.5 right-1.5 h-2.5 w-2.5 bg-rose-500 rounded-full border-2 border-white dark:border-slate-900 animate-pulse"></span>
+                            {/* Notifications */}
+                            <button className="hidden sm:flex relative p-2 sm:p-2.5 rounded-xl text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-all hover:scale-110">
+                                <i className="fa-regular fa-bell text-base sm:text-lg"></i>
+                                <span className="absolute top-1 sm:top-1.5 right-1 sm:right-1.5 h-2 w-2 sm:h-2.5 sm:w-2.5 bg-rose-500 rounded-full border-2 border-white dark:border-slate-900 animate-pulse"></span>
                             </button>
 
-                            <div className="flex items-center gap-3 pl-4 border-l border-slate-200/70 dark:border-slate-700/70">
+                            {/* Mobile Menu Button */}
+                            <button
+                                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                className="sm:hidden h-9 w-9 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 active:scale-95"
+                            >
+                                <i className={`fa-solid ${mobileMenuOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+                            </button>
+
+                            {/* User Profile */}
+                            <div className="hidden sm:flex items-center gap-2 sm:gap-3 pl-3 sm:pl-4 border-l border-slate-200/70 dark:border-slate-700/70">
                                 <div className="text-right hidden md:block">
-                                    <p className="text-xs font-medium text-slate-400 dark:text-slate-500">{greeting}</p>
-                                    <p className="text-sm font-bold text-slate-900 dark:text-white leading-none">Admin User</p>
+                                    <p className="text-[10px] sm:text-xs font-medium text-slate-400 dark:text-slate-500">{greeting}</p>
+                                    <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-none">Admin User</p>
                                 </div>
                                 <div className="relative group cursor-pointer">
                                     <img
-                                        className="h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-800 shadow-lg object-cover group-hover:ring-cyan-400 transition-all duration-300"
+                                        className="h-9 w-9 sm:h-10 sm:w-10 rounded-full ring-2 ring-white dark:ring-slate-800 shadow-lg object-cover group-hover:ring-cyan-400 transition-all duration-300"
                                         src="https://i.pravatar.cc/150?img=11"
                                         alt="User Avatar"
                                     />
-                                    <div className="absolute bottom-0 right-0 h-3 w-3 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></div>
+                                    <div className="absolute bottom-0 right-0 h-2.5 w-2.5 sm:h-3 sm:w-3 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Mobile Menu */}
+                <div className={`sm:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 ${mobileMenuOpen ? 'max-h-48 py-3' : 'max-h-0 py-0'}`}>
+                    <div className="px-3 space-y-2">
+                        <div className="flex items-center gap-3 p-2 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+                            <img className="h-9 w-9 rounded-full" src="https://i.pravatar.cc/150?img=11" alt="User" />
+                            <div>
+                                <p className="text-xs font-medium text-slate-400">{greeting}</p>
+                                <p className="text-sm font-bold text-slate-800 dark:text-white">Admin User</p>
+                            </div>
+                        </div>
+                        <div className="relative">
+                            <input
+                                type="text"
+                                placeholder="Search..."
+                                className="w-full pl-9 pr-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm"
+                            />
+                            <i className="fa-solid fa-magnifying-glass text-slate-400 absolute left-3 top-2.5 text-xs"></i>
                         </div>
                     </div>
                 </div>
             </nav>
 
             {/* Main Content */}
-            <main className="flex-grow max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-4 w-full relative z-10">
+            <main className="flex-grow max-w-[1800px] mx-auto px-3 sm:px-4 lg:px-8 py-3 sm:py-4 w-full relative z-10">
                 {/* Hero Section */}
-                <div className="mb-4 text-center animate-fade-in mt-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/20 mb-6">
-                        <span className="relative flex h-2 w-2">
+                <div className="mb-4 sm:mb-6 text-center animate-fade-in mt-4 sm:mt-8">
+                    <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/20 mb-4 sm:mb-6">
+                        <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-cyan-500"></span>
                         </span>
-                        <span className="text-xs font-bold text-cyan-700 dark:text-cyan-400 uppercase tracking-wider">All Systems Operational</span>
+                        <span className="text-[10px] sm:text-xs font-bold text-cyan-700 dark:text-cyan-400 uppercase tracking-wider">All Systems Operational</span>
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2 sm:mb-4">
                         Application <span className="gradient-text-animated">Hub</span>
                     </h1>
-                    <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto text-lg">
+                    <p className="text-sm sm:text-base lg:text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto px-4">
                         Access all your HR management tools in one place. Select an application to get started.
                     </p>
                 </div>
 
                 {/* Stats Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8">
                     {stats.map((stat, index) => (
-                        <div key={stat.label} className={`glass-card rounded-xl p-3 flex items-center gap-3 animate-slide-up stagger-${index + 1} stat-card cursor-pointer hover:shadow-lg`}>
-                            <div className={`h-10 w-10 rounded-lg bg-gradient-to-br ${stat.color} text-white flex items-center justify-center shadow-md ${stat.shadowColor}`}>
-                                <i className={`fa-solid ${stat.icon} text-lg`}></i>
+                        <div key={stat.label} className={`glass-card rounded-lg sm:rounded-xl p-2.5 sm:p-3 flex items-center gap-2 sm:gap-3 animate-slide-up stagger-${index + 1} stat-card cursor-pointer hover:shadow-lg active:scale-[0.98]`}>
+                            <div className={`h-8 w-8 sm:h-10 sm:w-10 rounded-md sm:rounded-lg bg-gradient-to-br ${stat.color} text-white flex items-center justify-center shadow-md ${stat.shadowColor}`}>
+                                <i className={`fa-solid ${stat.icon} text-sm sm:text-lg`}></i>
                             </div>
                             <div>
-                                <p className="text-xl font-extrabold text-slate-800 dark:text-white">{stat.value}</p>
-                                <p className="text-[10px] font-medium text-slate-500 dark:text-slate-400">{stat.label}</p>
+                                <p className="text-base sm:text-lg lg:text-xl font-extrabold text-slate-800 dark:text-white">{stat.value}</p>
+                                <p className="text-[9px] sm:text-[10px] font-medium text-slate-500 dark:text-slate-400">{stat.label}</p>
                             </div>
                         </div>
                     ))}
                 </div>
 
                 {/* Product Cards Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {products.map((product, index) => (
                         <ProductCardComponent key={product.id} product={product} index={index} />
                     ))}
                 </div>
 
                 {/* Explore Our Products Section */}
-                <section className="mt-16 mb-12 animate-fade-in">
-                    <div className="text-center mb-10">
-                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-violet-500/10 to-cyan-500/10 border border-violet-500/20 mb-4">
-                            <i className="fa-solid fa-sparkles text-violet-500"></i>
-                            <span className="text-xs font-bold text-violet-700 dark:text-violet-400 uppercase tracking-wider">Explore Our Products</span>
+                <section className="mt-8 sm:mt-12 lg:mt-16 mb-6 sm:mb-8 lg:mb-12 animate-fade-in">
+                    <div className="text-center mb-6 sm:mb-8 lg:mb-10">
+                        <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-violet-500/10 to-cyan-500/10 border border-violet-500/20 mb-3 sm:mb-4">
+                            <i className="fa-solid fa-sparkles text-violet-500 text-xs sm:text-sm"></i>
+                            <span className="text-[10px] sm:text-xs font-bold text-violet-700 dark:text-violet-400 uppercase tracking-wider">Explore Our Products</span>
                         </span>
-                        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-3">
+                        <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 dark:text-white mb-2 sm:mb-3">
                             Powerful <span className="bg-gradient-to-r from-cyan-600 to-violet-600 bg-clip-text text-transparent">HR Solutions</span>
                         </h2>
-                        <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+                        <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-2xl mx-auto px-4">
                             Discover the complete suite of tools designed to streamline your HR operations and boost productivity.
                         </p>
                     </div>
@@ -511,11 +552,10 @@ export default function LandingPage() {
             </main>
 
             {/* Footer */}
-            <footer className="mt-auto py-8 text-center text-sm text-slate-500 dark:text-slate-500 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-t border-gray-100 dark:border-slate-800 relative z-10">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+            <footer className="mt-auto py-4 sm:py-6 lg:py-8 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-500 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-t border-gray-100 dark:border-slate-800 relative z-10">
+                <div className="flex flex-col gap-2 sm:gap-4 px-4">
                     <p>© 2026 Savior HRMIS. All rights reserved.</p>
-                    <span className="hidden md:inline text-slate-300 dark:text-slate-700">|</span>
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
                         <a href="#" className="hover:text-cyan-600 transition-colors">Privacy Policy</a>
                         <a href="#" className="hover:text-cyan-600 transition-colors">Terms of Service</a>
                         <a href="#" className="hover:text-cyan-600 transition-colors">Support</a>
