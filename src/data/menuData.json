@@ -4,42 +4,131 @@
       "label": "People",
       "icon": "fa-users",
       "items": [
-        { "label": "Directory", "icon": "fa-address-book", "href": "#" },
-        { "label": "Organization", "icon": "fa-sitemap", "href": "#" },
-        { "label": "Teams", "icon": "fa-people-group", "href": "#" },
-        { "label": "Departments", "icon": "fa-building", "href": "#" },
-        { "label": "Designations", "icon": "fa-id-badge", "href": "#" },
-        { "label": "Roles & Permissions", "icon": "fa-user-shield", "href": "#" }
+        {
+          "label": "Directory",
+          "icon": "fa-address-book",
+          "href": "/employee-master"
+        },
+        {
+          "label": "Organization",
+          "icon": "fa-sitemap",
+          "href": "#"
+        },
+        {
+          "label": "Teams",
+          "icon": "fa-people-group",
+          "href": "#"
+        },
+        {
+          "label": "Locations",
+          "icon": "fa-map-location-dot",
+          "href": "/locations"
+        },
+        {
+          "label": "Departments",
+          "icon": "fa-building",
+          "href": "/departments"
+        },
+        {
+          "label": "Designations",
+          "icon": "fa-id-badge",
+          "href": "/designations"
+        },
+        {
+          "label": "Roles & Permissions",
+          "icon": "fa-user-shield",
+          "href": "#"
+        }
       ]
     },
     {
       "label": "Attendance",
       "icon": "fa-clock",
       "items": [
-        { "label": "Overview", "icon": "fa-chart-pie", "href": "#" },
-        { "label": "Daily Log", "icon": "fa-calendar-day", "href": "#" },
-        { "label": "Reports", "icon": "fa-file-lines", "href": "#" },
-        { "label": "Shifts", "icon": "fa-clock-rotate-left", "href": "#" },
-        { "label": "Policies", "icon": "fa-gavel", "href": "#" },
-        { "label": "Regularization", "icon": "fa-pen-to-square", "href": "#" }
+        {
+          "label": "Overview",
+          "icon": "fa-chart-pie",
+          "href": "#"
+        },
+        {
+          "label": "Daily Log",
+          "icon": "fa-calendar-day",
+          "href": "#"
+        },
+        {
+          "label": "Reports",
+          "icon": "fa-file-lines",
+          "href": "#"
+        },
+        {
+          "label": "Shifts",
+          "icon": "fa-clock-rotate-left",
+          "href": "#"
+        },
+        {
+          "label": "Policies",
+          "icon": "fa-gavel",
+          "href": "#"
+        },
+        {
+          "label": "Regularization",
+          "icon": "fa-pen-to-square",
+          "href": "#"
+        }
       ]
     },
     {
       "label": "Time Off",
       "icon": "fa-umbrella-beach",
       "items": [
-        { "label": "Dashboard", "icon": "fa-gauge-high", "href": "#" },
-        { "label": "Calendar", "icon": "fa-calendar-alt", "href": "#" },
-        { "label": "My Requests", "icon": "fa-paper-plane", "href": "#" },
-        { "label": "Approvals", "icon": "fa-check-double", "href": "#" },
-        { "label": "Policies", "icon": "fa-book", "href": "#" },
-        { "label": "Holidays", "icon": "fa-sun", "href": "#" }
+        {
+          "label": "Dashboard",
+          "icon": "fa-gauge-high",
+          "href": "#"
+        },
+        {
+          "label": "Calendar",
+          "icon": "fa-calendar-alt",
+          "href": "#"
+        },
+        {
+          "label": "My Requests",
+          "icon": "fa-paper-plane",
+          "href": "#"
+        },
+        {
+          "label": "Approvals",
+          "icon": "fa-check-double",
+          "href": "#"
+        },
+        {
+          "label": "Policies",
+          "icon": "fa-book",
+          "href": "#"
+        },
+        {
+          "label": "Holidays",
+          "icon": "fa-sun",
+          "href": "#"
+        }
       ]
     }
   ],
   "quickLinks": [
-    { "label": "Dashboard", "icon": "fa-gauge-high", "href": "/dashboard" },
-    { "label": "Reports", "icon": "fa-chart-bar", "href": "#" },
-    { "label": "Settings", "icon": "fa-gear", "href": "#" }
+    {
+      "label": "Dashboard",
+      "icon": "fa-gauge-high",
+      "href": "/dashboard"
+    },
+    {
+      "label": "Reports",
+      "icon": "fa-chart-bar",
+      "href": "#"
+    },
+    {
+      "label": "Settings",
+      "icon": "fa-gear",
+      "href": "#"
+    }
   ]
 }

@@ -1,0 +1,30 @@
+[
+    {
+        "id": "1",
+        "name": "Software Engineer",
+        "department": "Engineering",
+        "level": "Junior",
+        "status": "Active"
+    },
+    {
+        "id": "2",
+        "name": "Senior Product Manager",
+        "department": "Product Management",
+        "level": "Senior",
+        "status": "Active"
+    },
+    {
+        "id": "3",
+        "name": "HR Executive",
+        "department": "Human Resources",
+        "level": "Associate",
+        "status": "Active"
+    },
+    {
+        "id": "4",
+        "name": "Marketing Lead",
+        "department": "Marketing",
+        "level": "Lead",
+        "status": "Active"
+    }
+]

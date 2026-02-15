@@ -5,20 +5,20 @@ import Charts from '../components/dashboard/Charts';
 import LiveFeed from '../components/dashboard/LiveFeed';
 import PendingRequests from '../components/dashboard/PendingRequests';
 
+function getGreeting() {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good Morning';
+    if (hour < 18) return 'Good Afternoon';
+    return 'Good Evening';
+}
+
 export default function Dashboard() {
     const [currentTime, setCurrentTime] = useState(new Date());
-    const [greeting, setGreeting] = useState('Good Morning');
+    const greeting = getGreeting();
 
     useEffect(() => {
         const timer = setInterval(() => setCurrentTime(new Date()), 60000);
         return () => clearInterval(timer);
-    }, []);
-
-    useEffect(() => {
-        const hour = new Date().getHours();
-        if (hour < 12) setGreeting('Good Morning');
-        else if (hour < 18) setGreeting('Good Afternoon');
-        else setGreeting('Good Evening');
     }, []);
 
     const formatDate = (date: Date) => {

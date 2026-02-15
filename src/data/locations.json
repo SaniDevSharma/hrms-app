@@ -1,0 +1,29 @@
+[
+    {
+        "id": "1",
+        "name": "Headquarters",
+        "address": "123 Tech Park, Sector 5",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "country": "India",
+        "status": "Active"
+    },
+    {
+        "id": "2",
+        "name": "Innovation Hub",
+        "address": "456 Cyber City, Phase 2",
+        "city": "Gurgaon",
+        "state": "Haryana",
+        "country": "India",
+        "status": "Active"
+    },
+    {
+        "id": "3",
+        "name": "West Zone Office",
+        "address": "789 Business Bay",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "country": "India",
+        "status": "Inactive"
+    }
+]

@@ -1,21 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import Chart from 'react-apexcharts';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../hooks/useTheme';
 import GlassCard from '../ui/GlassCard';
 
 export default function Charts() {
     const { darkMode } = useTheme();
-    const [key, setKey] = useState(0);
-
-    // Force re-render when theme changes
-    useEffect(() => {
-        setKey(prev => prev + 1);
-    }, [darkMode]);
 
     const textColor = darkMode ? '#cbd5e1' : '#64748b';
     const gridColor = darkMode ? '#334155' : '#e2e8f0';
 
-    const attendanceOptions: ApexCharts.ApexOptions = {
+    const attendanceOptions = useMemo<ApexCharts.ApexOptions>(() => ({
         chart: {
             type: 'area',
             toolbar: { show: false },
@@ -60,14 +54,14 @@ export default function Charts() {
                 legend: { fontSize: '10px' },
             }
         }]
-    };
+    }), [darkMode, textColor, gridColor]);
 
-    const attendanceSeries = [
+    const attendanceSeries = useMemo(() => [
         { name: 'Present', data: [1150, 1180, 1120, 1200, 1089, 980, 850] },
         { name: 'Absent', data: [97, 67, 127, 47, 158, 267, 397] },
-    ];
+    ], []);
 
-    const statusOptions: ApexCharts.ApexOptions = {
+    const statusOptions = useMemo<ApexCharts.ApexOptions>(() => ({
         chart: {
             type: 'donut',
             background: 'transparent',
@@ -110,9 +104,13 @@ export default function Charts() {
                 legend: { fontSize: '10px' },
             }
         }]
-    };
+    }), [darkMode, textColor]);
 
-    const statusSeries = [1089, 58, 23, 77];
+    const statusSeries = useMemo(() => [1089, 58, 23, 77], []);
+
+    // Use darkMode as key to force chart re-render on theme change
+    // This avoids the setState-in-effect lint error
+    const chartKey = darkMode ? 'dark' : 'light';
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -126,7 +124,7 @@ export default function Charts() {
                     </select>
                 </div>
                 <div className="chart-container -mx-2 sm:mx-0">
-                    <Chart key={`attendance-${key}`} options={attendanceOptions} series={attendanceSeries} type="area" height={280} />
+                    <Chart key={`attendance-${chartKey}`} options={attendanceOptions} series={attendanceSeries} type="area" height={280} />
                 </div>
             </GlassCard>
 
@@ -137,7 +135,7 @@ export default function Charts() {
                         Details
                     </button>
                 </div>
-                <Chart key={`status-${key}`} options={statusOptions} series={statusSeries} type="donut" height={280} />
+                <Chart key={`status-${chartKey}`} options={statusOptions} series={statusSeries} type="donut" height={280} />
             </GlassCard>
         </div>
     );
