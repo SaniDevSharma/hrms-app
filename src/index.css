@@ -15,7 +15,34 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-/* Background */
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+/* ─── Background ─── */
 .clean-bg {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
   background-attachment: fixed;
@@ -25,7 +52,7 @@ body {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
 }
 
-/* Blobs */
+/* ─── Blobs ─── */
 .blob {
   position: fixed;
   filter: blur(80px);
@@ -51,12 +78,13 @@ body {
   }
 }
 
-/* Glass Card */
+/* ─── Glass Card ─── */
 .glass-card {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
 }
 
 .dark .glass-card {
@@ -65,7 +93,7 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* Stat Card */
+/* ─── Stat Card ─── */
 .stat-card {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -83,7 +111,7 @@ body {
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Nav Active */
+/* ─── Nav Active ─── */
 .nav-item-active {
   background: white;
   box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15);
@@ -93,7 +121,7 @@ body {
   background: rgba(51, 65, 85, 0.8);
 }
 
-/* Pulse Dot */
+/* ─── Pulse Dot ─── */
 .pulse-dot {
   animation: pulse-dot 2s infinite;
 }
@@ -107,12 +135,12 @@ body {
   }
 
   50% {
-    transform: scale(1.2);
-    opacity: 0.7;
+    transform: scale(1.3);
+    opacity: 0.6;
   }
 }
 
-/* Slide Up Animation */
+/* ─── Slide Up Animation ─── */
 .animate-slide-up {
   animation: slideUp 0.6s ease-out forwards;
   opacity: 0;
@@ -130,7 +158,39 @@ body {
   }
 }
 
-/* Stagger Delays */
+/* ─── Scale In Animation (Modals) ─── */
+.animate-scale-in {
+  animation: scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ─── Backdrop Fade In ─── */
+.animate-backdrop-in {
+  animation: backdropIn 0.2s ease-out forwards;
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ─── Stagger Delays ─── */
 .stagger-1 {
   animation-delay: 0.05s;
 }
@@ -151,7 +211,7 @@ body {
   animation-delay: 0.25s;
 }
 
-/* Dropdown Menu */
+/* ─── Dropdown Menu ─── */
 .dropdown {
   position: relative;
 }
@@ -223,19 +283,17 @@ body {
   transition: transform 0.25s ease;
 }
 
-/* Mobile Menu - Note: visibility is controlled via Tailwind classes in React components */
-
-/* Slide Track for Carousel */
+/* ─── Slide Track for Carousel ─── */
 .slide-track {
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Chart Container */
+/* ─── Chart Container ─── */
 .chart-container {
   min-height: 280px;
 }
 
-/* Gradient Text Animation */
+/* ─── Gradient Text Animation ─── */
 .gradient-text-animated {
   background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%);
   background-size: 200% 200%;
@@ -257,7 +315,7 @@ body {
   }
 }
 
-/* Card Hover */
+/* ─── Card Hover ─── */
 .card-hover {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -279,7 +337,7 @@ body {
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Feature Card */
+/* ─── Feature Card ─── */
 .feature-card {
   transition: all 0.2s ease;
 }
@@ -289,7 +347,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Fade In Animation */
+/* ─── Fade In ─── */
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
 }
@@ -304,7 +362,7 @@ body {
   }
 }
 
-/* Slide transitions */
+/* ─── Slide transitions ─── */
 .slide {
   transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
@@ -321,7 +379,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Float Animation */
+/* ─── Float Animation ─── */
 .float-animation {
   animation: floatElement 4s ease-in-out infinite;
 }
@@ -336,4 +394,140 @@ body {
   50% {
     transform: translateY(-5px);
   }
+}
+
+/* ─── Shimmer Loading Skeleton ─── */
+.shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .shimmer {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ─── Table Row Hover Accent ─── */
+.table-row-hover {
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.table-row-hover:hover {
+  background-color: rgba(6, 182, 212, 0.04);
+  border-left-color: #06b6d4;
+}
+
+.dark .table-row-hover:hover {
+  background-color: rgba(6, 182, 212, 0.08);
+}
+
+/* ─── Notification Badge Pulse ─── */
+.badge-pulse {
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ─── Tooltip ─── */
+.tooltip-wrapper {
+  position: relative;
+}
+
+.tooltip-wrapper::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  padding: 4px 10px;
+  background: #1e293b;
+  color: #f1f5f9;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.15s ease;
+  z-index: 50;
+}
+
+.tooltip-wrapper:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Tooltip Below — avoids overlap with sticky headers */
+.tooltip-below {
+  position: relative;
+}
+
+.tooltip-below::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  padding: 4px 10px;
+  background: #1e293b;
+  color: #f1f5f9;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.15s ease;
+  z-index: 50;
+}
+
+.tooltip-below:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* ─── Gentle Bounce ─── */
+.animate-gentle-bounce {
+  animation: gentleBounce 2s ease-in-out infinite;
+}
+
+@keyframes gentleBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ─── Focus Ring ─── */
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
 }

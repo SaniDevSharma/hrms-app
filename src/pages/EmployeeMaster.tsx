@@ -84,7 +84,7 @@ export default function EmployeeMaster() {
                     </div>
                 </MasterToolbar>
 
-                <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700">
+                <div className="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
                     <table className="w-full text-left border-collapse">
                         <thead className="bg-slate-50/50 dark:bg-slate-800/50 backdrop-blur-sm sticky top-0 z-10">
                             <tr className="border-b border-slate-200 dark:border-slate-700">
@@ -98,7 +98,7 @@ export default function EmployeeMaster() {
                         </thead>
                         <tbody className="divide-y divide-slate-100 dark:divide-slate-700/50">
                             {paginatedEmployees.map((employee) => (
-                                <tr key={employee.id} className="group hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-all duration-200">
+                                <tr key={employee.id} className="table-row-hover group hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-all duration-200">
                                     <td className="p-4">
                                         <div className="flex items-center gap-4">
                                             <div className="relative">

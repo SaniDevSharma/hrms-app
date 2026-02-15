@@ -108,7 +108,7 @@ export default function Navbar() {
                     {/* Notifications */}
                     <button className="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200 relative">
                         <i className="fa-solid fa-bell"></i>
-                        <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 rounded-full text-[10px] text-white font-bold flex items-center justify-center">3</span>
+                        <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 rounded-full text-[10px] text-white font-bold flex items-center justify-center badge-pulse">3</span>
                     </button>
 
                     {/* User Profile with Dropdown */}

@@ -59,7 +59,7 @@ export default function LocationMaster() {
                     onAdd={handleAdd}
                 />
 
-                <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700">
+                <div className="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
                     <table className="w-full text-left border-collapse">
                         <thead className="bg-slate-50/50 dark:bg-slate-800/50 backdrop-blur-sm sticky top-0 z-10">
                             <tr className="border-b border-slate-200 dark:border-slate-700">
@@ -71,7 +71,7 @@ export default function LocationMaster() {
                         </thead>
                         <tbody className="divide-y divide-slate-100 dark:divide-slate-700/50">
                             {paginatedLocations.map((loc) => (
-                                <tr key={loc.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-all">
+                                <tr key={loc.id} className="table-row-hover hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-all">
                                     <td className="p-4">
                                         <p className="font-bold text-slate-800 dark:text-white">{loc.name}</p>
                                         <p className="text-xs text-slate-500">{loc.address}</p>
