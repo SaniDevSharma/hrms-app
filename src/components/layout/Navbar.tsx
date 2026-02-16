@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
+import { useAuth } from '../../context/AuthContext';
 import menuData from '../../data/menuData.json';
 import type { MenuData } from '../../types';
 
@@ -8,11 +9,11 @@ const menu = menuData as MenuData;
 
 export default function Navbar() {
     const { darkMode, toggleTheme } = useTheme();
+    const { user, logout } = useAuth();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [expandedMenus, setExpandedMenus] = useState<string[]>([]);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
     const location = useLocation();
-    const navigate = useNavigate();
 
     const toggleSubmenu = (label: string) => {
         setExpandedMenus(prev =>
@@ -24,12 +25,17 @@ export default function Navbar() {
 
     const isExpanded = (label: string) => expandedMenus.includes(label);
 
+    // Get display name and initials from Keycloak user profile
+    const displayName = user?.firstName
+        ? `${user.firstName} ${user.lastName || ''}`.trim()
+        : user?.username || 'User';
+    const initials = user?.firstName
+        ? `${user.firstName[0]}${(user.lastName || '')[0] || ''}`.toUpperCase()
+        : 'U';
+    const email = user?.email || '';
+
     const handleLogout = () => {
-        // Clear any stored authentication data
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-        // Navigate to login page
-        navigate('/');
+        logout();
     };
 
     return (
@@ -118,11 +124,11 @@ export default function Navbar() {
                             className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
                         >
                             <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-lg shadow-cyan-500/20">
-                                JD
+                                {initials}
                             </div>
                             <div className="hidden lg:block text-left">
-                                <p className="text-sm font-semibold text-slate-800 dark:text-white leading-none">John Doe</p>
-                                <p className="text-xs text-slate-500 dark:text-slate-400">Administrator</p>
+                                <p className="text-sm font-semibold text-slate-800 dark:text-white leading-none">{displayName}</p>
+                                <p className="text-xs text-slate-500 dark:text-slate-400">{email}</p>
                             </div>
                             <i className={`fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`}></i>
                         </button>
@@ -137,8 +143,8 @@ export default function Navbar() {
                                 />
                                 <div className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden z-50 animate-slide-up">
                                     <div className="p-3 border-b border-slate-100 dark:border-slate-700">
-                                        <p className="text-sm font-semibold text-slate-800 dark:text-white">John Doe</p>
-                                        <p className="text-xs text-slate-500 dark:text-slate-400">john.doe@company.com</p>
+                                        <p className="text-sm font-semibold text-slate-800 dark:text-white">{displayName}</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400">{email}</p>
                                     </div>
                                     <div className="p-2">
                                         <Link
@@ -182,11 +188,11 @@ export default function Navbar() {
                     <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl mb-3">
                         <div className="flex items-center gap-3">
                             <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-lg shadow-cyan-500/20">
-                                JD
+                                {initials}
                             </div>
                             <div>
-                                <p className="text-sm font-semibold text-slate-800 dark:text-white">John Doe</p>
-                                <p className="text-xs text-slate-500 dark:text-slate-400">Administrator</p>
+                                <p className="text-sm font-semibold text-slate-800 dark:text-white">{displayName}</p>
+                                <p className="text-xs text-slate-500 dark:text-slate-400">{email}</p>
                             </div>
                         </div>
                         <button

@@ -24,9 +24,15 @@ export default function ProductShowcaseCard({ product }: { product: ProductShowc
                         </div>
                     </div>
                     <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-3 sm:mb-4 leading-relaxed">{product.description}</p>
-                    <Link to={product.route} className={`inline-flex items-center gap-2 ${product.textColor} text-sm sm:text-base font-bold hover:underline active:scale-95 transition-transform`}>
-                        Launch App <i className="fa-solid fa-arrow-right"></i>
-                    </Link>
+                    {product.route.startsWith('http') ? (
+                        <a href={product.route} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 ${product.textColor} text-sm sm:text-base font-bold hover:underline active:scale-95 transition-transform`}>
+                            Launch App <i className="fa-solid fa-arrow-right"></i>
+                        </a>
+                    ) : (
+                        <Link to={product.route} className={`inline-flex items-center gap-2 ${product.textColor} text-sm sm:text-base font-bold hover:underline active:scale-95 transition-transform`}>
+                            Launch App <i className="fa-solid fa-arrow-right"></i>
+                        </Link>
+                    )}
                 </div>
                 <div className="lg:w-2/3">
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">

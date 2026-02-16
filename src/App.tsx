@@ -1,11 +1,12 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 import DashboardLayout from './components/layout/DashboardLayout';
 
 // Lazy-loaded pages for code splitting
-const Login = lazy(() => import('./pages/Login'));
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const EmployeeMaster = lazy(() => import('./pages/EmployeeMaster'));
@@ -44,24 +45,30 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <BrowserRouter>
-          <Suspense fallback={<LoadingFallback />}>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/home" element={<LandingPage />} />
-              <Route element={<DashboardLayout />}>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/employee-master" element={<EmployeeMaster />} />
-                <Route path="/departments" element={<DepartmentMaster />} />
-                <Route path="/designations" element={<DesignationMaster />} />
-                <Route path="/locations" element={<LocationMaster />} />
-                <Route path="/payroll" element={<Dashboard />} />
-                <Route path="/vms" element={<Dashboard />} />
-                <Route path="/travel" element={<Dashboard />} />
-              </Route>
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
+        <AuthProvider>
+          <BrowserRouter>
+            <Suspense fallback={<LoadingFallback />}>
+              <Routes>
+                <Route path="/" element={<Navigate to="/home" replace />} />
+                <Route path="/home" element={<LandingPage />} />
+                <Route element={
+                  <PrivateRoute>
+                    <DashboardLayout />
+                  </PrivateRoute>
+                }>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/employee-master" element={<EmployeeMaster />} />
+                  <Route path="/departments" element={<DepartmentMaster />} />
+                  <Route path="/designations" element={<DesignationMaster />} />
+                  <Route path="/locations" element={<LocationMaster />} />
+                  <Route path="/payroll" element={<Dashboard />} />
+                  <Route path="/vms" element={<Dashboard />} />
+                  <Route path="/travel" element={<Dashboard />} />
+                </Route>
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </AuthProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

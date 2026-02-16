@@ -51,7 +51,7 @@ export const products: ProductCard[] = [
         icon: 'fa-solid fa-indian-rupee-sign',
         color: 'from-emerald-500 to-green-600',
         shadowColor: 'shadow-emerald-500/30',
-        route: '/payroll',
+        route: 'http://localhost:5174/',
         features: [
             { label: 'Salary Process', bgClass: 'bg-emerald-50 dark:bg-emerald-900/30', textClass: 'text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-800/50' },
             { label: 'Payslip Gen', bgClass: 'bg-emerald-50 dark:bg-emerald-900/30', textClass: 'text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-800/50' },
@@ -70,7 +70,7 @@ export const products: ProductCard[] = [
         icon: 'fa-solid fa-users-gear',
         color: 'from-violet-500 to-purple-600',
         shadowColor: 'shadow-violet-500/30',
-        route: '/aerm',
+        route: 'http://localhost:5173/',
         features: [
             { label: 'Onboarding', bgClass: 'bg-violet-50 dark:bg-violet-900/30', textClass: 'text-violet-700 dark:text-violet-300 border-violet-100 dark:border-violet-800/50' },
             { label: 'Appraisals', bgClass: 'bg-violet-50 dark:bg-violet-900/30', textClass: 'text-violet-700 dark:text-violet-300 border-violet-100 dark:border-violet-800/50' },
@@ -165,7 +165,7 @@ export const productShowcases: ProductShowcase[] = [
         color: 'from-emerald-500 to-green-600',
         shadowColor: 'shadow-emerald-500/30',
         textColor: 'text-emerald-600 dark:text-emerald-400',
-        route: '/payroll',
+        route: 'http://localhost:5174/',
         description: 'End-to-end payroll processing with salary calculations, payslip generation, TDS/tax compliance, and seamless bank transfer integration for timely disbursements.',
         featureColor: 'text-emerald-500',
         reverse: true,
@@ -185,7 +185,7 @@ export const productShowcases: ProductShowcase[] = [
         color: 'from-violet-500 to-purple-600',
         shadowColor: 'shadow-violet-500/30',
         textColor: 'text-violet-600 dark:text-violet-400',
-        route: '/aerm',
+        route: 'http://localhost:5173/',
         description: 'Complete employee lifecycle management from onboarding to exit. Handle appraisals, training programs, and maintain strong employee relations throughout their journey.',
         featureColor: 'text-violet-500',
         features: [

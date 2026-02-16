@@ -56,25 +56,53 @@ export default function ProductCardComponent({ product, index }: { product: Prod
                     </AnimatePresence>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
-                <Link
-                    to={product.route}
-                    className="absolute inset-0 flex items-end justify-center pb-4 sm:pb-6 opacity-0 group-hover:opacity-100 sm:transition-all sm:duration-300 z-20"
-                >
-                    <motion.span
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={`px-5 sm:px-8 py-2 sm:py-3 bg-gradient-to-r ${product.color} text-white rounded-full text-xs sm:text-sm font-bold shadow-2xl flex items-center gap-2`}
+                {product.route.startsWith('http') ? (
+                    <a
+                        href={product.route}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute inset-0 flex items-end justify-center pb-4 sm:pb-6 opacity-0 group-hover:opacity-100 sm:transition-all sm:duration-300 z-20"
                     >
-                        <span>Launch App</span> <i className="fa-solid fa-arrow-right"></i>
-                    </motion.span>
-                </Link>
+                        <motion.span
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`px-5 sm:px-8 py-2 sm:py-3 bg-gradient-to-r ${product.color} text-white rounded-full text-xs sm:text-sm font-bold shadow-2xl flex items-center gap-2`}
+                        >
+                            <span>Launch App</span> <i className="fa-solid fa-arrow-right"></i>
+                        </motion.span>
+                    </a>
+                ) : (
+                    <Link
+                        to={product.route}
+                        className="absolute inset-0 flex items-end justify-center pb-4 sm:pb-6 opacity-0 group-hover:opacity-100 sm:transition-all sm:duration-300 z-20"
+                    >
+                        <motion.span
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`px-5 sm:px-8 py-2 sm:py-3 bg-gradient-to-r ${product.color} text-white rounded-full text-xs sm:text-sm font-bold shadow-2xl flex items-center gap-2`}
+                        >
+                            <span>Launch App</span> <i className="fa-solid fa-arrow-right"></i>
+                        </motion.span>
+                    </Link>
+                )}
                 {/* Mobile tap indicator */}
-                <Link
-                    to={product.route}
-                    className="sm:hidden absolute bottom-2 right-2 h-8 w-8 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center shadow-lg z-20"
-                >
-                    <i className="fa-solid fa-arrow-right text-xs text-slate-600 dark:text-slate-300"></i>
-                </Link>
+                {product.route.startsWith('http') ? (
+                    <a
+                        href={product.route}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="sm:hidden absolute bottom-2 right-2 h-8 w-8 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center shadow-lg z-20"
+                    >
+                        <i className="fa-solid fa-arrow-right text-xs text-slate-600 dark:text-slate-300"></i>
+                    </a>
+                ) : (
+                    <Link
+                        to={product.route}
+                        className="sm:hidden absolute bottom-2 right-2 h-8 w-8 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center shadow-lg z-20"
+                    >
+                        <i className="fa-solid fa-arrow-right text-xs text-slate-600 dark:text-slate-300"></i>
+                    </Link>
+                )}
             </div>
 
             {/* Features */}
